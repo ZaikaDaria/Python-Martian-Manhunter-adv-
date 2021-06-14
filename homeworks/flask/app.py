@@ -91,8 +91,6 @@ class TodoList(Resource):
 class Weather(Resource):
 
     def get(self):
-        url = Config.WEATHER_API_URL
-
         cities = request.args.get('city')
         querystring = {"q": cities}
 
@@ -101,10 +99,10 @@ class Weather(Resource):
             'x-rapidapi-host': Config.WEATHER_API_HOST
         }
 
-        response = requests.request("GET", url, headers=headers, params=querystring)
+        response = requests.request("GET", Config.WEATHER_API_URL, headers=headers, params=querystring)
         if response.status_code == 200:
             data = response.text
-            return  data
+            return data
 
         return Response(status=404)
 
