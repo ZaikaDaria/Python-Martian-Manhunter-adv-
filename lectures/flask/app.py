@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from flask import Flask, render_template, request, Response
 import requests
 from config import Config
@@ -8,8 +9,16 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def homepage():
     return render_template("homepage.html")
+=======
+# flask_web/app.py
+from flask import Flask, render_template, request, jsonify, Response
+from flask_restful import Resource, Api
+from flask_sqlalchemy import SQLAlchemy
+>>>>>>> 901413b908fc96f6859d83b2cfd3cb07aca60f7f
 
+db = SQLAlchemy()
 
+<<<<<<< HEAD
 @app.route('/search', methods=['POST'])
 def search_weather():
     weather = []
@@ -53,6 +62,24 @@ def search_weather_lat_lan():
         return render_template("weather.html", weather=weather)
     else:
         return Response(status=404)
+=======
+app = Flask(__name__)
+
+app.config.from_object("config.Config")
+
+api = Api(app)
+
+db.init_app(app)
+
+with app.app_context():
+    import routes.todo
+    import routes.weather
+    import routes.blog
+    from models.models import User, Article, Category
+
+    db.create_all()
+
+>>>>>>> 901413b908fc96f6859d83b2cfd3cb07aca60f7f
 
 
 if __name__ == '__main__':
