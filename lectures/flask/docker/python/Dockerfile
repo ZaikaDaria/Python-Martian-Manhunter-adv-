@@ -7,8 +7,12 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /usr/src/app/
 
+COPY requirements.txt requirements.txt
+
 RUN pip install flask
 RUN pip install requests
+RUN pip install Flask-RESTful
+RUN pip install Flask-SQLAlchemy
 # copy project
 COPY . /usr/src/app/
 

@@ -113,17 +113,17 @@ class UsersUpdate(Resource):
 
         if not user_for_update:
             return redirect(url_for('/'))
+        else:
+            user_for_update.id = data.get('id')
+            user_for_update.username = data.get('username')
+            user_for_update.email = data.get('email'),
+            user_for_update.created = datetime.datetime.now(),
+            user_for_update.bio = data.get('bio'),
+            user_for_update.admin = data.get('admin')
 
-        user_for_update.id = data.get('id')
-        user_for_update.username = data.get('username')
-        user_for_update.email = data.get('email'),
-        user_for_update.created = datetime.datetime.now(),
-        user_for_update.bio = data.get('bio'),
-        user_for_update.admin = data.get('admin')
+            db.session.commit()
 
-        db.session.commit()
-
-        return user_for_update.serialize
+            return user_for_update.serialize
 
 
 class UsersRead(Resource):
