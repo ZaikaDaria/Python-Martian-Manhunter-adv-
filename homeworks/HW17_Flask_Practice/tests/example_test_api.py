@@ -34,3 +34,10 @@ def test_delete(client):
     assert response.status_code == 204
     response = client.get("/todos/1")
     assert response.status_code == 404
+
+
+def test_delete_article(client):
+    response = client.delete("api/articles/3")
+    assert response.status_code == 204
+    response = client.get("/api/articles/3")
+    assert response.status_code == 404
