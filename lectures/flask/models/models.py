@@ -39,6 +39,7 @@ class User(db.Model, Serializer):
         unique=False,
         nullable=False
     )
+
     articles = db.relationship("Article", backref='author', lazy=True)
 
     def __repr__(self):
