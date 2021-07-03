@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% block title %}
+ <title>Homepage</title>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row">
+                {% if sessions.get('user') %}
+                    {% for article in articles %}
+                        {% if article.location == session.get('user').get('location') %}
+                            {% include 'blog/shared/article.html' %}
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                <h3 aling center>You are not logged. Please authorize <a href="{{ url_for('login') }}"></a>here</h3>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
