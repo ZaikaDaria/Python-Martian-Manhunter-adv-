@@ -1,0 +1,3 @@
+<h1>Hello dear {{ data.get('username') }}!</h1>
+<p style="color: blue">Click on button to activate your account</p>
+<a href="http://0.0.0.0:5000/activation/{{ data.get('email') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Activate</a>

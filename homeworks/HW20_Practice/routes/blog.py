@@ -16,11 +16,6 @@ def homepage():
     return render_template('blog/index.html', config=Config, articles=articles)
 
 
-@app.route('/contact-us')
-def contact():
-    return render_template('blog/contact-us.html')
-
-
 @app.route('/sign-up', methods=['GET'])
 def sign_up():
     if session.get('user', False):
@@ -36,7 +31,6 @@ def user_store():
         email=data.get('email'),
         password=data.get('password'),
         bio=data.get('description'),
-        location=data.get('location'),
         created=datetime.datetime.now(),
         admin=0,
         activated=0,
@@ -53,13 +47,14 @@ def user_store():
 
     return render_template('blog/confirmation.html')
 
+
 @app.route('/activate/<string:email>')
-def activate(email):
+def confirm(email):
     user = User.query.filter_by(email=email).first()
     user.activated = True
     db.session.commit()
     session['user'] = user.serialize
-    return render_template('blog/activation.html')
+    return render_template('blog/confirmed.html')
 
 
 @app.route('/sign-in', methods=['GET'])
@@ -79,8 +74,6 @@ def login():
         user = User.query.filter_by(username=request.form.get('username')).first()
         if user:
             if check_password(user.password, request.form.get('password')):
-                user.location = request.form.get('location')
-                db.session.commit('')
                 session['user'] = user.serialize
 
     return redirect('/')
@@ -105,6 +98,11 @@ def article_create():
     return render_template('blog/article_create.html')
 
 
+@app.route('/contact-us')
+def contact_us():
+    return render_template('blog/contact-us.html')
+
+
 @app.route('/article/store', methods=["POST"])
 def article_store():
     if not session.get('user', False):
@@ -121,9 +119,9 @@ def article_store():
         author_id=1,
         description=data.get('description'),
         short_description=data.get('short_description'),
-        location=data.get('location'),
         img=path
     )
 
     db.session.add(article)
     db.session.commit()
+    return redirect("/")
