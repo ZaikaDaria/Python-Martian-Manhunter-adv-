@@ -2,6 +2,7 @@ from django.core.validators import RegexValidator
 from django.db import models
 
 
+
 class Order(models.Model):
 
     STATUS_IN_PROGRESS = 'In progress'
@@ -20,7 +21,7 @@ class Order(models.Model):
     email = models.EmailField(unique=True)
     phone = RegexValidator(regex=r'^\+?1?\d{8-15}$')
     message = models.TextField(blank=True)
-    car = models.ForeignKey('cars.Cars', on_delete=models.CASCADE, related_name='orders')
+    car = models.ForeignKey('cars.Car', on_delete=models.CASCADE, related_name='orders')
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
