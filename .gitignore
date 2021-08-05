@@ -1,0 +1,5 @@
+.idea
+*.pyc
+*.dump
+__pycache__/
+*.env
