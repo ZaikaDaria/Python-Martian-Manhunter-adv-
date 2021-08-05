@@ -1,0 +1,1 @@
+SELECT * FROM articles JOIN article_categories AS artcat JOIN category AS cat WHERE cat.id = category_id AND artcat.id = article_id;
