@@ -2,7 +2,6 @@ from django.core import serializers
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 from apps.orders.models import Order
-from django.shortcuts import get_object_or_404, reverse
 
 
 class OrderView(ListView):
