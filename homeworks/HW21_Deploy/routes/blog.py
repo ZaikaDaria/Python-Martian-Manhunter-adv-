@@ -12,14 +12,14 @@ from helpers.additional_functions import check_password
 def homepage():
     articles = Article.query.all()
     session['hello'] = 'hello world'
-    return render_template('blog/index.html', config=Config, articles=articles)
+    return render_template('cars/index.html', config=Config, articles=articles)
 
 
 @app.route('/sign-up', methods=['GET'])
 def sign_up():
     if session.get('user', False):
         return redirect('/')
-    return render_template('blog/signup.html')
+    return render_template('cars/signup.html')
 
 
 @app.route('/user-register', methods=['POST'])
@@ -45,7 +45,7 @@ def user_store():
 def sign_in():
     if session.get('user', False):
         return redirect('/')
-    return render_template('blog/signin.html')
+    return render_template('cars/signin.html')
 
 
 @app.route('/login', methods=['POST'])
@@ -72,19 +72,19 @@ def logout():
 @app.route('/article/<string:slug>')
 def article_details(slug):
     article = Article.query.filter_by(slug=slug).first()
-    return render_template('blog/details.html', article=article)
+    return render_template('cars/details.html', article=article)
 
 
 @app.route('/article/create')
 def article_create():
     if not session.get('user', False):
         return redirect('/')
-    return render_template('blog/article_create.html')
+    return render_template('cars/article_create.html')
 
 
 @app.route('/contact-us')
 def contact_us():
-    return render_template('blog/contact-us.html')
+    return render_template('cars/contact-us.html')
 
 
 @app.route('/article/store', methods=["POST"])

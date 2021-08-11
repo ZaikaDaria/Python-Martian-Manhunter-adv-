@@ -13,19 +13,19 @@ from flask_mail import Mail, Message
 def homepage():
     articles = Article.query.all()
     session['hello'] = 'hello world'
-    return render_template('blog/index.html', config=Config, articles=articles)
+    return render_template('cars/index.html', config=Config, articles=articles)
 
 
 @app.route('/contact-us')
 def contact():
-    return render_template('blog/contact-us.html')
+    return render_template('cars/contact-us.html')
 
 
 @app.route('/sign-up', methods=['GET'])
 def sign_up():
     if session.get('user', False):
         return redirect('/')
-    return render_template('blog/signup.html')
+    return render_template('cars/signup.html')
 
 
 @app.route('/user-register', methods=['POST'])
@@ -48,10 +48,10 @@ def user_store():
     session['user'] = user.serialize
 
     msg = Message('Hello', sender=Config.MAIL_USERNAME, recipients=[data.get('email')])
-    msg.html = render_template('blog/emails/activation.html', data=data)
+    msg.html = render_template('cars/emails/activation.html', data=data)
     mail.send(msg)
 
-    return render_template('blog/confirmation.html')
+    return render_template('cars/confirmation.html')
 
 @app.route('/activate/<string:email>')
 def activate(email):
@@ -59,14 +59,14 @@ def activate(email):
     user.activated = True
     db.session.commit()
     session['user'] = user.serialize
-    return render_template('blog/activation.html')
+    return render_template('cars/activation.html')
 
 
 @app.route('/sign-in', methods=['GET'])
 def sign_in():
     if session.get('user', False):
         return redirect('/')
-    return render_template('blog/signin.html')
+    return render_template('cars/signin.html')
 
 
 @app.route('/login', methods=['POST'])
@@ -95,14 +95,14 @@ def logout():
 @app.route('/article/<string:slug>')
 def article_details(slug):
     article = Article.query.filter_by(slug=slug).first()
-    return render_template('blog/details.html', article=article)
+    return render_template('cars/details.html', article=article)
 
 
 @app.route('/article/create')
 def article_create():
     if not session.get('user', False):
         return redirect('/')
-    return render_template('blog/article_create.html')
+    return render_template('cars/article_create.html')
 
 
 @app.route('/article/store', methods=["POST"])

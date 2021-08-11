@@ -10,18 +10,18 @@ from forms.forms import RegistrationForm, LoginForm
 @app.route('/', methods=["GET"])
 def homepage():
     articles = Article.query.all()
-    return render_template('blog/index.html', config=Config, articles=articles)
+    return render_template('cars/index.html', config=Config, articles=articles)
 
 
 @app.route('/article/<string:slug>')
 def article_details(slug):
     article = Article.query.filter_by(slug=slug).first()
-    return render_template('blog/details.html', article=article)
+    return render_template('cars/details.html', article=article)
 
 
 @app.route('/article/create')
 def article_create():
-    return render_template('blog/article_create.html')
+    return render_template('cars/article_create.html')
 
 
 @app.route('/article/store', methods=["POST"])
@@ -56,10 +56,10 @@ def register():
         db.session.commit()
         flash('Thanks for registration')
         return redirect(url_for('login'))
-    return render_template('blog/register.html', form=form)
+    return render_template('cars/register.html', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    return render_template('blog/login.html', form=form)
+    return render_template('cars/login.html', form=form)

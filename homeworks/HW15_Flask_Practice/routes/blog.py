@@ -8,13 +8,13 @@ from models.models import Article, User
 @app.route('/', methods=["GET"])
 def homepage():
     articles = Article.query.all()
-    return render_template('blog/index.html', config=Config, articles=articles)
+    return render_template('cars/index.html', config=Config, articles=articles)
 
 
 @app.route('/article/<string:slug>')
 def article_details(slug):
     article = Article.query.filter_by(slug=slug).first()
-    return render_template('blog/details.html', article=article)
+    return render_template('cars/details.html', article=article)
 
 
 class MenuItem(Resource):

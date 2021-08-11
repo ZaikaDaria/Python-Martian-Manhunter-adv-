@@ -83,7 +83,7 @@ class Contact(Resource):
         msg.html = "Contact Email: " + data['email'] + "<br>" + "Contact Title: " + data['title'] + "<br>" + "Contact Description: " + data['description']
         mail.send(msg)
         client_msg = Message('Dear Client!', sender='turupuru8@gmail.com', recipients=[data['email']])
-        client_msg.html = render_template('blog/emails/contact.html', email=data['email'])
+        client_msg.html = render_template('cars/emails/contact.html', email=data['email'])
         mail.send(client_msg)
         return Response(status=200)
 
