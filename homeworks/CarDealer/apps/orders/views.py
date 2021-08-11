@@ -2,6 +2,10 @@ from django.core import serializers
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 from apps.orders.models import Order
+<<<<<<< Updated upstream
+=======
+from django.shortcuts import get_object_or_404, reverse
+>>>>>>> Stashed changes
 
 
 class OrderView(ListView):
