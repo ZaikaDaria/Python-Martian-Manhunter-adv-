@@ -85,8 +85,8 @@ WSGI_APPLICATION = 'CarDealer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mydb',
-        'USER': 'zaikadaria',
+        'NAME': 'mydb2',
+        'USER': 'dariazaika',
         'PASSWORD': 'DZ@6808',
         'HOST': '127.0.0.1',
         'PORT': '5432',

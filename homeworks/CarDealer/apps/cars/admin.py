@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import *
+from apps.cars.models import *
 
 class CarAdmin(admin.ModelAdmin):
     list_display = ('model', 'dealer',)
-    autocomplete_fields = ('dealer', )
-    search_fields = ('dealer', 'model',)
+    autocomplete_fields = ('dealer', 'model', 'color')
+    search_fields = ('model', 'dealer', 'price')
 
 
 admin.site.register(Car, CarAdmin)

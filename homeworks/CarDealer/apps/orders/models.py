@@ -1,6 +1,5 @@
 from django.core.validators import RegexValidator
 from django.db import models
-from django.shortcuts import reverse
 
 
 class Order(models.Model):
@@ -19,13 +18,9 @@ class Order(models.Model):
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
     email = models.EmailField(unique=True)
-    phoneNumberRegex = RegexValidator(regex=r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
-    phone = models.CharField(validators=[phoneNumberRegex], max_length=20, null=True)
+    phone = RegexValidator(regex=r'^\+?1?\d{8-15}$')
     message = models.TextField(blank=True)
-    car = models.ForeignKey('cars.Car', on_delete=models.CASCADE, related_name='orders')
+    car = models.ForeignKey('cars.Cars', on_delete=models.CASCADE, related_name='orders')
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
-
-    def get_absolute_url(self):
-        return reverse('order_detail', kwargs={'id': self.id})

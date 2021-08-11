@@ -15,21 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from apps.cars.views import *
-from apps.dealers.views import *
-from apps.orders.views import *
-from .views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', IndexTemplateView.as_view()),
-    path('cars/', CarView.as_view(), name='car_list'),
-    path('cars/<int:pk>', CarDetailView.as_view(), name='car_detail'),
-    path('api/cars/json', serializer_cars),
-    path('dealers/', DealerView.as_view(), name='dealer_list'),
-    path('dealers/<slug:slug>', DealerDetailView.as_view(), name='dealer_detail'),
-    path('api/dealers/json', serializer_dealers),
-    path('orders/', OrderView.as_view(), name='order_list'),
-    path('orders/<int:pk>', OrderDetailView.as_view(), name='order_detail'),
-    path('api/orders/json', serializer_order),
 ]

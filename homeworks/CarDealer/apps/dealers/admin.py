@@ -19,7 +19,7 @@ class CountryAdmin(admin.ModelAdmin):
     search_fields = ('name', )
 
 
-admin.site.register(Dealer, DealerAdmin)
+admin.site.register(Dealers, DealerAdmin)
 admin.site.register(City, CityAdmin)
 admin.site.register(Country, CountryAdmin)
 admin.site.register(NewsLetter)
