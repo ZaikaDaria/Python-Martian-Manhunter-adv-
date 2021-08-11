@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}
+    {% for s in single_car %}
+        {{ s.brand.name }}
+    {% endfor %}
+{% endblock %}
+{% block content %}
+    {% for s in single_car %}
+        <div class="cars_body">
+            <h1>Car info: {{ s.model.brand }} {{ s.model }}</h1>
+                <ul>
+                    <li>Dealer: {{ s.dealer }}</li>
+                    <li>Color: {{ s.color }}</li>
+                    <li>Model: {{ s.model }}</li>
+                    <li>Price {{ s.price }}</li>
+                    <li>Status: {{ s.status }}</li>
+                    <li>Number: {{ objsct.number }}</li>
+                    <li>Pollutant Class: {{ s.pollutant_class }}</li>
+                    <li>Engine Type: {{ s.engine_type }}</li>
+                    <li>Engine Power: {{ s.engine_power }}</li>
+                    <li>Capacity: {{ s.capacity }}</li>
+                    <li>Gear Case: {{ s.gear_case }}</li>
+                    <li>Fuel Type: {{ s.fuel.fuel_type }}</li>
+                    <li>Doors: {{ s.doors }}</li>
+                    <li>Sitting Place: {{ s.sitting_place }}</li>
+                    <li>Registration Date: {{ s.first_registration_date }}</li>
+                </ul>
+        </div>
+    {% endfor %}
+{% endblock %}
