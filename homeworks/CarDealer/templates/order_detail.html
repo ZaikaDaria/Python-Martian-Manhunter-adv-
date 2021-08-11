@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+    {% block title %}
+        {{ object.first_name }} {{ object.last_name }}
+    {% endblock %}
+{% block content %}
+<div>
+    <p>Name: {{ object.first_name }} {{ object.last_name }}</p>
+    <p>Status: {{ object.status }}</p>
+    <p>Car: {{ object.car.model }}</p>
+    <p>Phone: {{ object.phone }}</p>
+    <p>Email: {{ object.email }}</p>
+    <p>Message: {{ object.message }}</p>
+
+</div>
+{% endblock %}
