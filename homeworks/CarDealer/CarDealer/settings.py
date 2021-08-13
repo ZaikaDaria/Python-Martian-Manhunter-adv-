@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'apps.orders',
     'apps.cars',
     'apps.dealers',
+    'apps.newsletter',
 ]
 
 MIDDLEWARE = [
@@ -85,8 +86,8 @@ WSGI_APPLICATION = 'CarDealer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mydb2',
-        'USER': 'dariazaika',
+        'NAME': 'mydb',
+        'USER': 'zaikadaria',
         'PASSWORD': 'DZ@6808',
         'HOST': '127.0.0.1',
         'PORT': '5432',

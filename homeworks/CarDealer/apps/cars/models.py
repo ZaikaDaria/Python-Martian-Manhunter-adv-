@@ -1,5 +1,7 @@
 from django.contrib.auth import get_user_model
+from django.shortcuts import reverse
 from django.db import models
+
 
 USER_MODEL = get_user_model()
 
@@ -58,6 +60,9 @@ class Car(models.Model):
 
     def __str__(self):
         return self.number
+
+    def get_absolute_url(self):
+        return reverse('car_detail', kwargs={'id': self.id})
 
 
 class Color(models.Model):
