@@ -22,4 +22,3 @@ class CountryAdmin(admin.ModelAdmin):
 admin.site.register(Dealer, DealerAdmin)
 admin.site.register(City, CityAdmin)
 admin.site.register(Country, CountryAdmin)
-admin.site.register(NewsLetter)

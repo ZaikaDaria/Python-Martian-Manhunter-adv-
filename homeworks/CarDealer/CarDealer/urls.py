@@ -18,6 +18,7 @@ from django.urls import path
 from apps.cars.views import *
 from apps.dealers.views import *
 from apps.orders.views import *
+from apps.newsletter.views import *
 from .views import *
 
 urlpatterns = [
@@ -32,4 +33,6 @@ urlpatterns = [
     path('orders/', OrderView.as_view(), name='order_list'),
     path('orders/<int:pk>', OrderDetailView.as_view(), name='order_detail'),
     path('api/orders/json', serializer_order),
+    path('newsletter/', NewsLettersView.as_view(), name='newsletter'),
+    path('success/', SuccessTemplateView.as_view(), name='success'),
 ]
