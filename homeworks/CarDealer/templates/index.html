@@ -2,8 +2,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Car Dealer</title>
+   <div class="btn-account">
+            {% if user.is_authenticated %}
+                <a class="account-btn" href="{% url 'logout' %}">Log Out</a>
+            {% else %}
+                <a class="account-btn" href="{% url 'signup' %}">Register</a>
+                <a class="account-btn" href="{% url 'login' %}">Log In</a>
+            {% endif %}
+   </div>
+
 </head>
+
 <body>
+
 <h1>New Cars, Used Cars, Car Dealers</h1>
 <p>For ditail information, please follow links bellow:</p>
 <ul>

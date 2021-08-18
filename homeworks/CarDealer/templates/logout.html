@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}
+Log Out
+{% endblock %}
+{% block content %}
+  <h1>You've loged out successfully</h1>
+    <a class="fgt-link" href="{% url 'index' %}">Home Page</a>
+    <a class="fgt-link" href="{% url 'login' %}">Try to log in again</a>
+{% endblock %}

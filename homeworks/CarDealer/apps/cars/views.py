@@ -31,3 +31,6 @@ class CarDetailView(DetailView):
 def serializer_cars(request):
     data = serializers.serialize('json', Car.objects.all())
     return HttpResponse(request.method + '<br>' + data)
+
+
+

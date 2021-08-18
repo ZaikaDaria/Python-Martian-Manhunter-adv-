@@ -110,6 +110,7 @@ class CarProperty(models.Model):
     property_type = models.ForeignKey('cars.Property', on_delete=models.CASCADE)
     car = models.ForeignKey('cars.Car', on_delete=models.CASCADE)
 
+
 class Picture(models.Model):
     url = models.ImageField(upload_to='pictures', null=True, blank=True)
     position = models.IntegerField()
@@ -118,3 +119,6 @@ class Picture(models.Model):
     class Meta:
         verbose_name = 'Picture'
         verbose_name_plural = 'Pictures'
+
+
+
