@@ -24,7 +24,7 @@ class OrderDetailViewTestCase(TestCase):
         self.assertContains(response, self.order.email)
 
     def test_not_found(self):
-        response = self.client.get('/order/1234567/')
+        response = self.client.get('/order/12345678/')
         self.assertEqual(response.status_code, 404)
 
 
