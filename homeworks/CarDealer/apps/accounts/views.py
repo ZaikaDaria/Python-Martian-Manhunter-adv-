@@ -6,14 +6,9 @@ from django.shortcuts import render, redirect
 from .forms import *
 from django.contrib import auth, messages
 from django.http import HttpResponse
-
-
-class DemoView(APIView):
-    permission_classes = (IsAuthenticated,)
-
-    def get(self, request):
-        content = {'message': 'Hello! This is a Demo!'}
-        return Response(content)
+from .serializers import *
+from rest_framework.authtoken.models import Token
+from rest_framework import status, generics, permissions
 
 
 def logIn(request):
@@ -43,4 +38,48 @@ def signup(request):
     else:
         form = UserRegisterForm()
     return render(request, 'signup.html', {'form': form})
+
+
+class LoginAPIView(APIView):
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['username']
+        login(request, user)
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({"status": status.HTTP_200_OK, "Token": token.key})
+
+
+class RegisterAPIView(generics.GenericAPIView):
+    serializer_class = RegisterSerializer
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        token = Token.objects.filter(user=request.user)
+        return Response({
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
+            "token": token.key
+        })
+
+
+class UserAPIView(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated, ]
+    serializer_class = UserSerializer
+
+    def get_object(self):
+        return self.request.user
+
+
+class LogoutAPIView(APIView):
+    permission_classes = [IsAuthenticated, ]
+
+    def post(self, request):
+        request.user.auth_token.delete()
+        auth.logout(request)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 

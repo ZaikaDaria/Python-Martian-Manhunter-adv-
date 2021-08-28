@@ -45,6 +45,7 @@ urlpatterns = [
     path('login/', logIn, name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
     # REST FRAMEWORK URLS
-    # path('api/', include('apps.accounts.api.urls')),
+    path('api/', include('apps.accounts.urls')),
     path('api-auth/', include('rest_framework.urls'))
+
 ]
