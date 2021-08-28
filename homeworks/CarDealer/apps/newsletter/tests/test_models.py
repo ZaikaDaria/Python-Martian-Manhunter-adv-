@@ -3,10 +3,8 @@ from apps.newsletter.models import NewsLetter
 
 
 class TestNewsLetterModel(TestCase):
-
-    @classmethod
-    def setUpTestData(cls):
-        cls.newsletter = NewsLetter.objects.create(
+    def setUp(self):
+        self.newsletter = NewsLetter.objects.create(
             email="somemail@mail.com",
         )
 

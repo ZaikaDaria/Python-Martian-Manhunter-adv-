@@ -4,7 +4,7 @@ from apps.orders.models import *
 
 
 class TestOrderModel(TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.car = CarFactory()
 
     def test_model(self):

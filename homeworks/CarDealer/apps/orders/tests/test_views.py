@@ -4,10 +4,9 @@ from apps.orders.tests.factories import OrderFactory
 
 
 class OrdersListViewTestCase(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.car = OrderFactory()
-        cls.url = f'/order/'
+    def setUp(self):
+        self.car = OrderFactory()
+        self.url = f'/order/'
 
     def test_ok(self):
         response = self.client.get(self.url)
@@ -15,10 +14,9 @@ class OrdersListViewTestCase(TestCase):
 
 
 class OrderDetailViewTestCase(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.order = OrderFactory()
-        cls.url = f'/order/{cls.order.id}/'
+    def setUp(self):
+        self.order = OrderFactory()
+        self.url = f'/order/{self.order.id}/'
 
     def test_ok(self):
         response = self.client.get(self.url)
