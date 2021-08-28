@@ -4,9 +4,9 @@ from apps.dealers.tests.factories import DealerFactory
 
 
 class DealerViewTestCase(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.url = f'/dealers/'
+
+    def setUp(self):
+        self.url = f'/dealers/'
 
     def test_ok(self):
         response = self.client.get(self.url)
@@ -14,10 +14,9 @@ class DealerViewTestCase(TestCase):
 
 
 class DealerDetailViewTestCase(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.dealer = DealerFactory()
-        cls.url = f'/dealers/{cls.dealer.id}/'
+    def setUp(self):
+        self.dealer = DealerFactory()
+        self.url = f'/dealers/{self.dealer.id}/'
 
     def test_ok(self):
         response = self.client.get(self.url)

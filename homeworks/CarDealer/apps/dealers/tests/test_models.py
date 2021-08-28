@@ -7,7 +7,7 @@ from apps.dealers.models import *
 
 class TestDealerModel(TestCase):
 
-    def setUpTestData(self) -> None:
+    def setUp(self):
         self.user = UserFactory()
         self.city = CityFactory()
 
