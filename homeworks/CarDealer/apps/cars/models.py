@@ -1,5 +1,7 @@
 from django.contrib.auth import get_user_model
+from django.shortcuts import reverse
 from django.db import models
+
 
 USER_MODEL = get_user_model()
 
@@ -59,6 +61,9 @@ class Car(models.Model):
     def __str__(self):
         return self.number
 
+    def get_absolute_url(self):
+        return reverse('car_detail', kwargs={'id': self.id})
+
 
 class Color(models.Model):
     color = models.CharField(max_length=30)
@@ -105,6 +110,7 @@ class CarProperty(models.Model):
     property_type = models.ForeignKey('cars.Property', on_delete=models.CASCADE)
     car = models.ForeignKey('cars.Car', on_delete=models.CASCADE)
 
+
 class Picture(models.Model):
     url = models.ImageField(upload_to='pictures', null=True, blank=True)
     position = models.IntegerField()
@@ -113,3 +119,6 @@ class Picture(models.Model):
     class Meta:
         verbose_name = 'Picture'
         verbose_name_plural = 'Pictures'
+
+
+

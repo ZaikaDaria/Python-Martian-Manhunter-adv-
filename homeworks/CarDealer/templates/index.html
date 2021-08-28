@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Dealer</title>
+   <div class="btn-account">
+            {% if user.is_authenticated %}
+                <a class="account-btn" href="{% url 'logout' %}">Log Out</a>
+            {% else %}
+                <a class="account-btn" href="{% url 'signup' %}">Register</a>
+                <a class="account-btn" href="{% url 'login' %}">Log In</a>
+            {% endif %}
+   </div>
+
+</head>
+
+<body>
+
+<h1>New Cars, Used Cars, Car Dealers</h1>
+<p>For ditail information, please follow links bellow:</p>
+<ul>
+    <li><a href="{% url 'car_list' %}">Cars</a></li>
+    <li><a href="{% url 'dealer_list' %}">Dealers</a></li>
+    <li><a href="{% url 'order_list' %}">Orders</a></li>
+</ul>
+<hr>
+<br>
+    <a href="{% url 'newsletter' %}">Subscribe</a>
+</body>
+</html>

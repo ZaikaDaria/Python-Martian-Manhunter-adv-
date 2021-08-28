@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+    <h1>Dealer: {{ object.title }}</h1>
+{% endblock %}
+
+{% block content %}
+<div>
+    <p>Email: {{ object.email }}</p>
+    <p>City: {{ object.city.name }}</p>
+    <p>Country: {{ object.city.country.name }}</p>
+    <p>Cars:</p>
+    <ul>
+        {% for car in object.cars.all %}
+        <li>{{ car.model.brand }} {{ car.model }}</li>
+        {% empty %}
+        <li>No cars have been added.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

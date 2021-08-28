@@ -46,7 +46,22 @@ INSTALLED_APPS = [
     'apps.orders',
     'apps.cars',
     'apps.dealers',
+    'apps.newsletter',
+    'apps.accounts',
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+
+    'DEFAULT_PERMISSION_CLASSES': [
+            'rest_framework.permissions.IsAuthenticated',
+    ]
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -85,8 +100,8 @@ WSGI_APPLICATION = 'CarDealer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mydb2',
-        'USER': 'dariazaika',
+        'NAME': 'mydb',
+        'USER': 'zaikadaria',
         'PASSWORD': 'DZ@6808',
         'HOST': '127.0.0.1',
         'PORT': '5432',
@@ -131,3 +146,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
